@@ -31,6 +31,16 @@ function App() {
       <p>Good Reviews: {goodReviews}</p>
       <p>Neutral Reviews: {neutralReviews}</p>
       <p>Bad Reviews: {badReviews}</p>
+      <p>Total Reviews: {goodReviews + badReviews + neutralReviews}</p>
+      <p>
+        Average Reviews:{" "}
+        {(goodReviews - badReviews) /
+          (goodReviews + badReviews + neutralReviews)}
+      </p>
+      <p>
+        Postive Reviews:{" "}
+        {(goodReviews / (goodReviews + badReviews + neutralReviews)) * 100}
+      </p>
     </>
   );
 }
