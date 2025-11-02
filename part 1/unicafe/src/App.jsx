@@ -1,6 +1,34 @@
 import { useState } from "react";
 import Button from "./Button";
 
+const Statistics = ({ goodReviews, neutralReviews, badReviews }) => {
+  console.log(goodReviews, neutralReviews, badReviews);
+  const totalReviews = goodReviews + neutralReviews + badReviews;
+  const averageReviews = (goodReviews - badReviews) / totalReviews;
+  const goodReviewsPercentage = (goodReviews / totalReviews) * 100;
+
+  if (goodReviews === 0 && neutralReviews === 0 && badReviews === 0) {
+    return (
+      <div>
+        <h2>Statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h2>Statistics</h2>
+        <p>Good Reviews: {goodReviews}</p>
+        <p>Neutral Reviews: {neutralReviews}</p>
+        <p>Bad Reviews: {badReviews}</p>
+        <p>Total Reviews: {totalReviews}</p>
+        <p>Average Reviews: {averageReviews}</p>
+        <p>Postive Reviews: {goodReviewsPercentage}</p>
+      </div>
+    );
+  }
+};
+
 function App() {
   const [goodReviews, setGoodReviews] = useState(0);
   const [neutralReviews, setNeutralReviews] = useState(0);
@@ -27,20 +55,11 @@ function App() {
       <Button onClick={addReview("Good")} text="Good" />
       <Button onClick={addReview("Neutral")} text="Neutral" />
       <Button onClick={addReview("Bad")} text="Bad" />
-      <h2>Statistics</h2>
-      <p>Good Reviews: {goodReviews}</p>
-      <p>Neutral Reviews: {neutralReviews}</p>
-      <p>Bad Reviews: {badReviews}</p>
-      <p>Total Reviews: {goodReviews + badReviews + neutralReviews}</p>
-      <p>
-        Average Reviews:{" "}
-        {(goodReviews - badReviews) /
-          (goodReviews + badReviews + neutralReviews)}
-      </p>
-      <p>
-        Postive Reviews:{" "}
-        {(goodReviews / (goodReviews + badReviews + neutralReviews)) * 100}
-      </p>
+      <Statistics
+        goodReviews={goodReviews}
+        neutralReviews={neutralReviews}
+        badReviews={badReviews}
+      />
     </>
   );
 }
