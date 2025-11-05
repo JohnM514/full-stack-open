@@ -1,15 +1,17 @@
 const StatiscticLine = ({ text, value }) => {
   if (text === "Positive") {
     return (
-      <p>
-        {text} Reviews: {value}%
-      </p>
+      <tr>
+        <td>{text} Reviews</td>
+        <td>{value}%</td>
+      </tr>
     );
   } else {
     return (
-      <p>
-        {text} Reviews: {value}
-      </p>
+      <tr>
+        <td>{text} Reviews</td>
+        <td>{value}</td>
+      </tr>
     );
   }
 };
@@ -31,12 +33,16 @@ const Statistic = ({ goodReviews, neutralReviews, badReviews }) => {
     return (
       <div>
         <h2>Statistics</h2>
-        <StatiscticLine text="Good" value={goodReviews} />
-        <StatiscticLine text="Neutral" value={neutralReviews} />
-        <StatiscticLine text="Bad" value={badReviews} />
-        <StatiscticLine text="Total" value={totalReviews} />
-        <StatiscticLine text="Average" value={averageReviews} />
-        <StatiscticLine text="Positive" value={goodReviewsPercentage} />
+        <table>
+          <tbody>
+            <StatiscticLine text="Good" value={goodReviews} />
+            <StatiscticLine text="Neutral" value={neutralReviews} />
+            <StatiscticLine text="Bad" value={badReviews} />
+            <StatiscticLine text="Total" value={totalReviews} />
+            <StatiscticLine text="Average" value={averageReviews} />
+            <StatiscticLine text="Positive" value={goodReviewsPercentage} />
+          </tbody>
+        </table>
       </div>
     );
   }
