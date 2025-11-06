@@ -1,6 +1,28 @@
 import { useState } from "react";
 import Button from "./Button";
 
+// Source - https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
+// Posted by Ry-
+// Retrieved 2025-11-06, License - CC BY-SA 4.0
+
+function indexOfMax(arr) {
+  if (arr.length === 0) {
+    return -1;
+  }
+
+  var max = arr[0];
+  var maxIndex = 0;
+
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      maxIndex = i;
+      max = arr[i];
+    }
+  }
+
+  return maxIndex;
+}
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -34,12 +56,16 @@ const App = () => {
 
   return (
     <>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>Has {anecdotesVotes[selected]} votes.</p>
       <div>
         <Button text="Vote" onClick={voteAnecdote} />
         <Button text="Next anecdote" onClick={randomAnecdote} />
       </div>
+      <h2>Anecdote with most votes</h2>
+      <p>{anecdotes[indexOfMax(anecdotesVotes)]}</p>
+      <p>Has {anecdotesVotes[indexOfMax(anecdotesVotes)]} votes.</p>
     </>
   );
 };
